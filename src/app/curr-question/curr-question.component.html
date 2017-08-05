@@ -1,0 +1,124 @@
+
+<div *ngIf="!quizEnd && (askedQuestions[askedQuestions.length - 1].answers.length === 1)">
+
+  <p>{{askedQuestions[askedQuestions.length - 1].questionText}}</p>
+  <form class="form-horizontal">
+
+    <p *ngFor="let variant of askedQuestions[askedQuestions.length - 1].variants">
+      <label class="control-label">
+        <input type="radio" name="variant" value="{{variant}}"
+               (click)="checkChoice(variant, askedQuestions[askedQuestions.length - 1])"> {{variant}}
+      </label>
+    </p>
+    <p *ngIf="rightChoice">Это правильный ответ!</p>
+
+  </form>
+  <button (click)="getQuestion()" class="btn btn-primary">Следующий вопрос</button>
+
+</div>
+
+
+<div *ngIf="!quizEnd && (askedQuestions[askedQuestions.length - 1].answers.length > 1)">
+
+  <p>{{askedQuestions[askedQuestions.length - 1].questionText}}</p>
+  <form class="form-horizontal">
+
+    <p *ngFor="let variant of askedQuestions[askedQuestions.length - 1].variants">
+      <label class="control-label">
+        <input type="checkbox" name="variant" value="{{variant}}"
+               (click)="addOrRemoveCheckedAnswer(variant)"> {{variant}}
+      </label>
+    </p>
+
+    <button (click)="checkMultipleChoice(checkedAnswers, askedQuestions[askedQuestions.length - 1])" class="btn btn-default">
+      Проверить ответ</button>
+  </form>
+  <p *ngIf="rightChoice">Это правильный ответ!</p>
+  <div *ngIf="multipleChoiceChecked">
+    <br/>
+    <p>Правильный ответ: {{currAnswer.rightAnswer}}</p>
+    <p>Ваш ответ: {{currAnswer.userAnswer}}</p>
+  </div>
+  <br/>
+  <button (click)="getQuestion()" class="btn btn-primary">Следующий вопрос</button>
+
+</div>
+
+
+<div class="table-responsive" *ngIf="quizEnd">
+  <p>Итоговая статистика:</p>
+
+  <p>Количество правильных ответов: {{stats.rightAnswers}}</p>
+  <p>Количество неправильных ответов: {{stats.falseAnswers}}</p>
+  <table class="table table-bordered">
+    <thead>
+    <th>Вопрос</th>
+    <th>Ваш ответ</th>
+    <th>Правильный ответ</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let answer of answers">
+      <td>{{answer.questionText}}</td>
+      <td>{{answer.userAnswer}}</td>
+      <td>{{answer.rightAnswer}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--<div *ngIf="quizEnd && !seeAnswer">-->
+
+  <!--<form *ngIf="!resultAdded" class="form-horizontal" [formGroup]="userForm">-->
+    <!--<div class="form-group" style="margin-bottom: 0px">-->
+      <!--<label class="control-label">Для сохранения результата тестирования введите ваш ник:</label>-->
+      <!--<div>-->
+        <!--<input class="form-control username" type="text" formControlName="username">-->
+      <!--</div>-->
+      <!--<div class="error" *ngIf="userForm.controls.username?.touched && userForm.controls.username?.errors?.required">-->
+        <!--Ник обязателен-->
+      <!--</div>-->
+      <!--<div class="error" *ngIf="userForm.controls.username?.touched && userForm.controls.username?.errors?.minlength">-->
+        <!--Как минимум 4 символa-->
+      <!--</div>-->
+      <!--<div class="error" *ngIf="userForm.controls.username?.touched && userForm.controls.username?.errors?.maxlength">-->
+        <!--Максимум 20 символов-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<button (click)="addUser(userForm.value.username)" class="btn btn-primary" style="margin: 5px auto;"-->
+            <!--[disabled]="userForm.invalid">Добавить результат в рейтинг</button>-->
+  <!--</form>-->
+  <!--<div *ngIf="resultAdded" class="success">Ваши результаты были успешно добавлены!</div>-->
+  <!--<p>Итоговая статистика:</p>-->
+
+  <!--<p>Количество правильных ответов: {{stats.rightAnswers}}</p>-->
+  <!--<p>Количество неправильных ответов: {{stats.falseAnswers}}</p>-->
+  <!--<button *ngIf="resultAdded" (click)="seeAnswers()" class="btn btn-primary">Посмотреть ответы</button>-->
+
+<!--</div>-->
+
+<!--<div *ngIf="quizEnd && !seeAnswer"-->
+     <!--style="display: block; width: 480px !important; height: 240px !important; position: absolute">-->
+  <!--<canvas baseChart-->
+          <!--[data]="[stats.rightAnswers, stats.falseAnswers]"-->
+          <!--[labels]="pieChartLabels"-->
+          <!--[chartType]="pieChartType"></canvas>-->
+<!--</div>-->
+
+
+<!--<div class="table-responsive" *ngIf="seeAnswer">-->
+  <!--<table class="table table-bordered">-->
+    <!--<thead>-->
+      <!--<th>Вопрос</th>-->
+      <!--<th>Ваш ответ</th>-->
+      <!--<th>Правильный ответ</th>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+      <!--<tr *ngFor="let answer of answers">-->
+        <!--<td>{{answer.questionText}}</td>-->
+        <!--<td>{{answer.userAnswer}}</td>-->
+        <!--<td>{{answer.rightAnswer}}</td>-->
+      <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+<!--</div>-->
+

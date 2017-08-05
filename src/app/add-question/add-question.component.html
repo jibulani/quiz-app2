@@ -1,0 +1,116 @@
+<main>
+  <div>
+    <form class="form-horizontal" [formGroup]="questionForm">
+      <div class="form-group">
+        <label class="control-label">Категория вопроса:</label>
+        <div>
+          <input class="form-control" type="text" formControlName="category">
+        </div>
+        <div class="error" *ngIf="questionForm.controls.category?.touched && questionForm.controls.category?.errors?.required">
+          Категория вопроса обязательна
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Вопрос:</label>
+        <div>
+          <input class="form-control" type="text" formControlName="questionText">
+        </div>
+        <div class="error" *ngIf="questionForm.controls.questionText?.touched && questionForm.controls.questionText?.errors?.required">
+          Вопрос обязателен
+        </div>
+        <div class="error" *ngIf="questionForm.controls.questionText?.touched && questionForm.controls.questionText?.errors?.minlength">
+          Как минимум 15 символов
+        </div>
+      </div>
+
+      <!--<p *ngIf="questionForm.controls.questionText.errors">Это поле обязательно для заполнения!</p>-->
+      <!--<fieldset formGroupName="answerVariants">-->
+        <!--<div class="form-group">-->
+          <!--<label>Первый вариант ответа:</label>-->
+          <!--<div>-->
+            <!--<input class="form-control" type="text" formControlName="firstAnswer">-->
+          <!--</div>-->
+          <!--<div class="error"-->
+               <!--*ngIf="questionForm.get('answerVariants').get('firstAnswer').touched &&-->
+                <!--questionForm.get('answerVariants').get('firstAnswer').hasError('required')">-->
+            <!--Первый вариант ответа обязателен-->
+          <!--</div>-->
+        <!--</div>-->
+
+
+        <!--<div class="form-group">-->
+          <!--<label>Второй вариант ответа:</label>-->
+          <!--<div>-->
+            <!--<input class="form-control" type="text" formControlName="secondAnswer">-->
+          <!--</div>-->
+          <!--<div class="error"-->
+               <!--*ngIf="questionForm.get('answerVariants').get('secondAnswer').touched &&-->
+                <!--questionForm.get('answerVariants').get('secondAnswer').hasError('required')">-->
+            <!--Второй вариант ответа обязателен-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="form-group">-->
+          <!--<label>Третий вариант ответа:</label>-->
+          <!--<div>-->
+            <!--<input class="form-control" type="text" formControlName="thirdAnswer">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</fieldset>-->
+      <div class="form-group">
+        <label>Первый вариант ответа:</label>
+        <div>
+          <input class="form-control" type="text" formControlName="firstAnswer">
+        </div>
+        <div class="error" *ngIf="questionForm.controls.firstAnswer?.touched && questionForm.controls.firstAnswer?.errors?.required">
+          Первый вариант ответа обязателен
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Второй вариант ответа:</label>
+        <div>
+          <input class="form-control" type="text" formControlName="secondAnswer">
+        </div>
+        <div class="error" *ngIf="questionForm.controls.secondAnswer?.touched && questionForm.controls.secondAnswer?.errors?.required">
+          Второй вариант ответа обязателен
+        </div>
+        <div class="error" *ngIf="questionForm.controls.secondAnswer?.touched
+        && questionForm.hasError('secondAnswerCoincidence')">
+          Ответы не должны совпадать
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Третий вариант ответа:</label>
+        <div>
+          <input class="form-control" type="text" formControlName="thirdAnswer">
+        </div>
+        <div class="error" *ngIf="questionForm.controls.thirdAnswer?.touched
+        && questionForm.hasError('thirdAnswerCoincidence')">
+          Ответы не должны совпадать
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Правильный вариант ответа:</label>
+        <div>
+          <input class="form-control" type="text" formControlName="rightAnswer">
+        </div>
+        <div class="error" *ngIf="questionForm.controls.rightAnswer?.touched && questionForm.controls.rightAnswer?.errors?.required">
+          Правильный ответ обязателен
+        </div>
+        <div class='error' *ngIf="questionForm.controls.rightAnswer.touched
+        && questionForm.hasError('mismatchedAnswers')">
+          Правильный ответ не совпадает ни с одним из вариантов
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="questionForm.invalid"
+              (click)="onSubmit(questionForm)">Добавить этот вопрос</button>
+    </form>
+  </div>
+</main>
+<!--Валидность: {{form.valid}}-->
+<br>
+<!--{{form.value | json}}-->
+<!--<br>-->
+<!--{{form.get(['info','confirm'])?.errors | json }}-->

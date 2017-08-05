@@ -1,0 +1,56 @@
+<main>
+  <!--<p *ngFor="let question of questions">-->
+    <!--{{question.questionText}}  {{question.variants}}  {{question.answer}}-->
+  <!--</p>-->
+  <!--<p>{{askedQuestions}}</p>-->
+  <div class="container" *ngIf="areQuestionsReceived()">
+    <div *ngIf="!isTestStarted">
+      <p *ngFor="let category of questionCategories" >
+        <button (click)="chooseCategory(category)" class="btn btn-primary">{{category}}</button>
+      </p>
+    </div>
+
+    <app-curr-question *ngIf="isTestStarted"
+      [questions]="currQuestions"></app-curr-question>
+      <!--<p>{{askedQuestions[askedQuestions.length - 1].questionText}}</p>-->
+
+      <!--<form *ngIf="!!askedQuestions">-->
+
+          <!--<p *ngFor="let variant of askedQuestions[askedQuestions.length - 1].variants">-->
+            <!--<label>-->
+              <!--<input type="radio" value="{{variant}}"-->
+                     <!--(click)="checkChoice(variant, askedQuestions[askedQuestions.length - 1])"> {{variant}}-->
+            <!--</label>-->
+          <!--</p>-->
+
+      <!--</form>-->
+      <!--<p *ngIf="rightChoice">Это правильный ответ!</p>-->
+      <!--<button (click)="getQuestion()" class="btn btn-primary">Следующий вопрос</button>-->
+
+
+  </div>
+  <!--<div class="container" *ngIf="quizEnd">-->
+    <!--<p>Итоговая статистика:</p>-->
+    <!--<p>Количество правильных ответов: {{stats.rightAnswers}}</p>-->
+    <!--<p>Количество неправильных ответов: {{stats.falseAnswers}}</p>-->
+  <!--</div>-->
+</main>
+
+
+  <!--<p>{{askedQuestions[askedQuestions.length - 1].questionText}}</p>
+
+  <form>
+    <label *ngFor="let variant of askedQuestions[askedQuestions.length - 1].variants">
+      <input type="radio" value="{{variant}}"
+             (click)="checkChoice(variant, askedQuestions[askedQuestions.length - 1])"> {{variant}} <br>
+    </label>
+  </form>
+  <p *ngIf="rightChoice">Это правильный ответ!</p>
+  <button (click)="getQuestion()">Следующий вопрос</button>
+
+</div>
+<div class="container" *ngIf="quizEnd">
+  <p>Итоговая статистика:</p>
+  <p>Количество правильных ответов: {{stats.rightAnswers}}</p>
+  <p>Количество неправильных ответов: {{stats.falseAnswers}}</p>
+</div>-->

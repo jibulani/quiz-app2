@@ -1,0 +1,40 @@
+/*.answers_table {*/
+  /*width: 1000px;*/
+/*}*/
+
+table {
+  text-align: left;
+}
+
+th {
+  padding: 8px;
+}
+
+.username {
+  width: 30%;
+  margin: 5px auto;
+}
+
+.error {
+  /*border-radius: 2px;*/
+  width: 30%;
+  margin: 5px auto;
+  padding: 2px;
+  background-color: #fef7f8;
+  border-left: 5px solid;
+  border-color: #f0868e;
+  color: #210406;
+  border-radius: 0 4px 4px 0;
+}
+
+.success {
+  /*border-radius: 2px;*/
+  width: 30%;
+  margin: 5px auto;
+  padding: 2px;
+  background-color: #c0edf1;
+  border-left: 5px solid;
+  border-color: #58d0da;
+  color: #000;
+  border-radius: 0 4px 4px 0;
+}

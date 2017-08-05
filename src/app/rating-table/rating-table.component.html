@@ -1,0 +1,17 @@
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+    <th>Категория теста</th>
+    <th>Имя пользователя</th>
+    <th>Счет</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of bestUsers">
+      <td>{{user.category}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.score}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
